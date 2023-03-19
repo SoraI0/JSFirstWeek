@@ -1,21 +1,42 @@
-const numberOfFilms = +window.prompt("Скільки фільмів ви вже переглянули?", "Уведіть кількість");
+function correctnes(a) {
+	let isTrue = false;
+	while (!isTrue) {
+		if (a !== null && a.length > 0 && a.length <= 50) {
+			isTrue = true;
+		} else {
+			a = window.prompt('Помилка. Уведіть ще раз:', '');
+		}
+	}
+	return a;
+}
+
+let numberOfFilms = correctnes(window.prompt('Скільки фільмів ви вже переглянули?', ''));
 
 const personalMovieDB = {
-	count: numberOfFilms,
+	count: +numberOfFilms,
 	movies: {},
 	actors: {},
 	genres: [],
 	privat: false
 };
 
-const a = window.prompt("Введіть назву останнього переглянутого фільму:"),
-	b = +window.prompt("На скільки оціните його?"),
-	c = window.prompt("Введіть назву останнього переглянутого фільму:"),
-	d = +window.prompt("На скільки оціните його?");
+for (i = 0; i < personalMovieDB.count; i++) {
+	let film, score;
+	film = correctnes(window.prompt(`${i + 1} Уведіть назву фільму:`, ''));
+	score = correctnes(window.prompt(`${i + 1} Уведіть оцінку:`, ''));
+	personalMovieDB.movies[film] = +score;
+}
 
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
+console.log(personalMovieDB.movies);
+if (personalMovieDB.count > 0 && personalMovieDB.count < 10) {
+	console.log('Переглянуто доволі мало фільмів');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count === 30) {
+	console.log('Ви дефолтний глядач');
+} else if (personalMovieDB.count > 30) {
+	console.log('Ви кіноман');
+} else {
+	console.log('Відбулась помилка');
+}
 
-console.log(personalMovieDB.movies)
 
 
