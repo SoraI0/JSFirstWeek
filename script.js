@@ -32,11 +32,11 @@ function detectPersonalLevel() {
 	}
 }
 
-function showMyDB(isPrivat, movies) {
-	if (isPrivat) {
-		return;
+function showMyDB() {
+	if (personalMovieDB.privat) {
+		console.log(personalMovieDB);
 	}
-	console.log(movies);
+	return;
 }
 
 function writeMyGenres() {
@@ -68,7 +68,7 @@ const personalMovieDB = {
 
 rememberMyFilm()
 detectPersonalLevel();
-showMyDB(personalMovieDB.privat, personalMovieDB);
+showMyDB(personalMovieDB.privat);
 personalMovieDB.genres = writeMyGenres();
 
 
